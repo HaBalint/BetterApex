@@ -1,4 +1,4 @@
-﻿using BetterApex;
+﻿
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,19 +14,19 @@ namespace BetterApex_2
 {
     public partial class MainWindow : Window
     {
-        private ApexWebSocketClient _apexClient;
+        private ApexService _apexClient;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            _apexClient = new ApexWebSocketClient();
+            _apexClient = new ApexService();
             Loaded += MainWindow_Loaded;
         }
-
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            await _apexClient.ConnectAsync();
+            await _apexClient.StartAsync();
         }
+
     }
 }

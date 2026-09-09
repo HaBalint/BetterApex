@@ -3,12 +3,13 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Websocket.Client;
 
-namespace BetterApex
+namespace BetterApex_2
 {
     public class ApexWebSocketClient
     {
         private readonly Uri _serverUri;
         private WebsocketClient _client;
+        public event Action<string>? MessageReceived;
 
         public ApexWebSocketClient()
         {
@@ -29,12 +30,20 @@ namespace BetterApex
                 Debug.WriteLine($"----------------------------------------------------------------------- WS disconnected: {info.Type} -----------------------------------------------------------------------");
             });
 
+            //_client.MessageReceived.Subscribe(msg =>
+          //  {
+          //      Debug.WriteLine(msg.Text);
+          //  });
+
             _client.MessageReceived.Subscribe(msg =>
             {
-                Debug.WriteLine(msg.Text);
+                MessageReceived?.Invoke(msg.Text);
             });
 
             await _client.Start();
+
+          
         }
-    }
+    
+        }
 }
