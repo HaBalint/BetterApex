@@ -23,7 +23,15 @@ namespace BetterApex_2
             }
             switch (colID)                                                      //switch case to determine the c"x" parameters meaning
             {
-                case "c3":     //update drivers position         
+                //case "c1":    //    NO IDEA
+                //    entry.name = value;
+                //    break;
+
+                //case "c2":    //    NO FUCKING IDEA EITHER
+                //    entry.name = value;
+                //    break;
+
+                case "c3":     //   update drivers position         
                     if (int.TryParse(value, out int rank))
                     {
                         entry.rank = rank;
@@ -34,21 +42,38 @@ namespace BetterApex_2
                     }
                     break;
 
-                case "c5":
-                    if (!int.TryParse(value,out int teamnum))
+                //case "c4":    //    NATION
+                    //if (int.TryParse(value, out int teamnum))
+                    //{
+                    //    entry.teamNum = teamnum;
+                    //}
+                    //break;
+
+                case "c5":    //    TEAM NUMBER
+                    if (int.TryParse(value,out int teamnum))
                     {
                         entry.teamNum = teamnum;
                     }
-                    
                     break;
 
-                case "c6":    //driver (or team) name
+                case "c6":    //    TEAM NAME
                     entry.name = value;
                     break;
 
+           //     case "c7":    //    SECTOR 1 TIME
+           //        entry.name = value;
+           //     break;
 
-                case "c10":     //update last lap time
-                    if (TimeSpan.TryParse(value, out TimeSpan lastLap))
+           //     case "c8":    //    SECTOR 2 TIME
+           //         entry.name = value;
+           //         break;
+
+            //    case "c9":    //   SECTOR 3 TIME
+            //        entry.name = value;
+            //        break;
+
+                case "c10":     //  LAST LAP
+                    if (TimeSpan.TryParse(value, out TimeSpan lastLap))         // !!!check if it convers time normally, C# be doin some retard shit sometimes!!!
                     {
                         entry.lastLap = lastLap;
                     }
@@ -58,6 +83,25 @@ namespace BetterApex_2
                     }
                     break;
 
+               //case "c11":    //   BEST LAP
+               //    entry.name = value;
+               //    break;
+
+               //case "c12":    //   GAP
+               //    entry.name = value;
+               //    break;
+
+               //case "c13":    //    LAPS
+               //    entry.name = value;
+               //    break;
+
+               //case "c14":    //    ON TRACK TIME
+               //    entry.name = value;
+               //    break;
+
+               //case "c15":    //    PITS
+               //    entry.name = value;
+               //    break;
 
 
             }
