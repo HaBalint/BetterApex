@@ -6,13 +6,14 @@ namespace BetterApex_2
 {
     public class ApexService
     {
-        private readonly ApexWebSocketClient _client;
+        private readonly ApexConnector _client;
         private readonly InitialParser _initParser;
-
+        private readonly LiveRaceState _liveRaceState;
         public ApexService()
         {
-            _client = new ApexWebSocketClient();
-            _initParser = new InitialParser();
+            _client = new ApexConnector();
+            _liveRaceState=new LiveRaceState();
+            _initParser = new InitialParser(_liveRaceState);
             _client.MessageReceived += OnMessageReceived;
 
         }

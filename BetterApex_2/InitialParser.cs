@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing.Text;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using HtmlAgilityPack;
 
@@ -8,6 +10,7 @@ namespace BetterApex_2
 {
     public class InitialParser
     {
+        private readonly LiveRaceState _raceState;
         public void Parse(string rawMessage)
         {
             int gridStart = rawMessage.IndexOf("grid||");                       // van e benne egyáltalán grid info (ha nincs akkor -1 az értéke)
@@ -46,7 +49,10 @@ namespace BetterApex_2
 
                 Debug.WriteLine($"Entry row: {rowId}, Kart: {kartNumber}");
             }
-
+        }
+        public InitialParser(LiveRaceState raceState)
+        {
+            _raceState= raceState;
         }
     }
 }

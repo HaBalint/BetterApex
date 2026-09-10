@@ -4,7 +4,8 @@ using System.Text;
 
 namespace BetterApex_2
 {
-    internal class RaceState
+    public class RaceState
     {
+        private readonly Dictionary<string, TeamEntry> _entries = new();
     }
 }

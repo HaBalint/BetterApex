@@ -5,13 +5,13 @@ using Websocket.Client;
 
 namespace BetterApex_2
 {
-    public class ApexWebSocketClient
+    public class ApexConnector
     {
         private readonly Uri _serverUri;
         private WebsocketClient _client;
         public event Action<string>? MessageReceived;
 
-        public ApexWebSocketClient()
+        public ApexConnector()
         {
             _serverUri = new Uri("wss://live-data.apex-timing.com:8533/");
         }
