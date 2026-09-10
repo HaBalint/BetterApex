@@ -32,7 +32,6 @@ namespace BetterApex_2
     {
         public string rowID { get; set; } = "";         //apex timing row ID (fix, does not change)
         public int internalKartId { get; set; }
-
         public int rank { get; set; }                   //position
         public int nation { get; set; }                 //nation
         public int teamNum { get; set; } = -1;          //kart number (during endurance race, its team number) default value -1, indicates missing data

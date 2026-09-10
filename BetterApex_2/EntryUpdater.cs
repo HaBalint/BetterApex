@@ -5,11 +5,11 @@ using System.Text;
 
 namespace BetterApex_2
 {
-    public class UpdateEntry
+    public class EntryUpdater
     {
         private readonly LiveRaceState _liveRaceState;
 
-        public UpdateEntry(LiveRaceState racestate)
+        public EntryUpdater(LiveRaceState racestate)
         {
             _liveRaceState = racestate;
         }
