@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="betterApex" Height="1080" Width="1920">
     <Grid Background="Black">
-        <Label Content="betterApex live timing" HorizontalAlignment="Left" VerticalAlignment="Top" Width="482" FontFamily="Cascadia Mono" FontSize="36" Background="Black" Foreground="Lime"/>
+        <Label Content="betterApex live timing" HorizontalAlignment="Left" VerticalAlignment="Top" Width="482" FontFamily="Cascadia Mono" FontSize="36" Background="Black" Foreground="White"/>
         <Frame Content="Frame" Margin="0,57,0,0"/>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,54,596,253" Foreground="Lime" Background="Black" SelectionChanged="DataGrid_SelectionChanged" FontFamily="Cascadia Code Light" BorderBrush="Black" OpacityMask="Black" HorizontalGridLinesBrush="White" VerticalGridLinesBrush="White" RowBackground="Black" FontSize="20"/>
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,54,596,253" Foreground="White" Background="Black" SelectionChanged="DataGrid_SelectionChanged" FontFamily="Cascadia Code Light" BorderBrush="Black" OpacityMask="Black" HorizontalGridLinesBrush="White" VerticalGridLinesBrush="White" RowBackground="Black" FontSize="20"/>
 
     </Grid>
 </Window>
