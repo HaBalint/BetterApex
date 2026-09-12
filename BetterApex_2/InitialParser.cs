@@ -15,11 +15,16 @@ namespace BetterApex_2
         {
             int gridStart = rawMessage.IndexOf("grid||");                       // van e benne egyáltalán grid info (ha nincs akkor -1 az értéke)
             int htmlStart=rawMessage.IndexOf("<tbody>");                        // van e benne egyáltalán <tbody> (ha nincs akkor -1 az értéke)
-            if (gridStart == -1 || htmlStart == -1)                             //ha nincs grid info vagy nincs <tbody> akkor nem kell tovább menni
+            int gridEnd = rawMessage.IndexOf("</tbody>");                       //grid vége index (ha nincs akkor -1 az értéke)
+            if (gridStart == -1 || htmlStart == -1 || gridEnd == -1)            //ha nincs grid info vagy nincs <tbody> akkor nem kell tovább menni
             {
                 return;
             }
-            int gridEnd = rawMessage.IndexOf("</tbody>");
+
+            if (gridEnd == -1)                                                   //ha nincs </tbody> akkor nem kell tovább menni
+            {
+                return;
+            }
             int htmlLength = gridEnd+"</tbody>".Length-htmlStart;
             //-------------------szarságok magamnak-------------------
             Debug.WriteLine($"Grid Start: {gridStart}");
@@ -35,21 +40,36 @@ namespace BetterApex_2
             var rows = body_html.DocumentNode.SelectNodes("//tr");              //table rows keresés
 
             Debug.WriteLine($"Rows found: {rows?.Count}");
+
+
             foreach (var row in rows)
             {
                 string rowId = row.GetAttributeValue("data-id", "");
-
                 if (rowId == "r0")
                 {
                     continue;                                                   //greek mode (NOP)
                 }
 
-                var kartCell = row.SelectSingleNode($".//*[@data-id='{rowId}c5']");
-                string kartNumber = kartCell?.InnerText ?? "";
 
-                Debug.WriteLine($"Entry row: {rowId}, Kart: {kartNumber}");
+                string rankString = GetCellValue(row, rowId, "c3");             //ha van adat, pakolja be egy TeamEntrybe
+                string teamNumString = GetCellValue(row, rowId, "c5");          //
+                string nameString = GetCellValue(row, rowId, "c6");             //                                             //
+                TeamEntry entry = new TeamEntry();                              //
+                entry.rank= int.TryParse(rankString, out int rank) ? rank : 0;  //
+                entry.teamNum = int.TryParse(teamNumString, out int teamNum) ? teamNum : -1;  
+                entry.name = nameString;                                        //
+                entry.rowID = rowId;                                            //
+                _raceState.CreateNewEntry(entry);                               
             }
+
+
         }
+        private string GetCellValue(HtmlNode row, string rowId, string colId)   //cell value lekérdezése a row-ból a data-id alapján
+        {
+            var cell = row.SelectSingleNode($".//*[@data-id='{rowId}{colId}']");
+            return cell?.InnerText ?? "";
+        }
+
         public InitialParser(LiveRaceState raceState)
         {
             _raceState= raceState;

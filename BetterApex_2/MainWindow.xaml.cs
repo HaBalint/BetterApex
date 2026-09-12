@@ -14,19 +14,23 @@ namespace BetterApex_2
 {
     public partial class MainWindow : Window
     {
-        private ApexService _apexClient;
+        private ApexService _apexService;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            _apexClient = new ApexService();
+            _apexService = new ApexService();
             Loaded += MainWindow_Loaded;
         }
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            await _apexClient.StartAsync();
+            await _apexService.StartAsync();
         }
 
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
